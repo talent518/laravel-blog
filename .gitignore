@@ -2,3 +2,5 @@
 .phpunit.result.cache
 env
 artisan.php
+node_modules
+package-lock.json
