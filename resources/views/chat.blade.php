@@ -9,7 +9,7 @@
                 <form class="card-body" id="j-chat-form">
                 	<div class="row">
                 		<button id="j-connect" class="btn btn-primary mx-3" type="button">{{ __('chat.connect') }}</button>
-                		<button id="j-disconnect" class="btn btn-primary mx-3" type="button" disabled="disabled">{{ __('chat.disconnect') }}</button>
+                		<button id="j-disconnect" class="btn btn-primary mr-3" type="button" disabled="disabled">{{ __('chat.disconnect') }}</button>
                 		<button id="j-time" class="btn btn-primary" type="button" disabled="disabled">{{ __('chat.getTime') }}</button>
                 		<span class="ml-3 col-form-label">{{ __('chat.name') }}<span id="j-name" class="font-weight-bold font-italic"></span></span>
                 	</div>
