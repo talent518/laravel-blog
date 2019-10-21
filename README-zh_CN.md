@@ -456,3 +456,12 @@ redis.on('pmessage', function(subscrbed, channel, message) {
 ```
   9. 启动websocket服务端：node server.js
   10. 用户登录到系统后HOME中有Chat连接，即可正常使用。
+
+## 4. 根据浏览器的语言设置自适应
+  * 1. 在文件 app/Providers/AppServiceProvider.php 中的boot方法中添加如下代码：
+```php
+if(preg_match('/^(zh|cn)/i', request()->header('Accept-Language'))) app()->setLocale('zh-CN');
+```
+  2. 翻译代码中的文字，如下列文件：
+    * resources/lang/en/chat.php
+    * resources/lang/zh-CN/chat.php

@@ -33,12 +33,12 @@ Route::middleware('auth:web')->group(function() {
 		$name = request()->post('name');
 		$message = request()->post('message');
 		
-		if(!preg_match('/^\\w+$/', $room)) return 'Room format error';
-		if(!preg_match('/^\\w+$/', $name)) return 'Name format error';
-		if(!$message) return 'Message cannot be empty';
+		if(!preg_match('/^\\w+$/', $room)) return trans('chat.roomFormatError');
+		if(!preg_match('/^\\w+$/', $name)) return trans('chat.nameFormatError');
+		if(!$message) return trans('chat.messageRequire');
 		
 		broadcast(new ChatEvent($room, compact('name', 'message')));
 		
-		return 'Pushed to queue';
+		return trans('chat.pushedToQueue');
 	});
 });

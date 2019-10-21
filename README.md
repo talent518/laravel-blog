@@ -455,3 +455,12 @@ redis.on('pmessage', function(subscrbed, channel, message) {
 ```
   9. Start websocket server: node server.js
   10. After the user logs in to the system, there is a chat connection in home, which can be used normally.
+
+## 4. Adaptive to browser language settings
+  * 1. Add the following code to the boot method in the file app / providers / appserviceprovider.php:
+```php
+if(preg_match('/^(zh|cn)/i', request()->header('Accept-Language'))) app()->setLocale('zh-CN');
+```
+  2. Translate the text in the code as follows:
+    * resources/lang/en/chat.php
+    * resources/lang/zh-CN/chat.php
