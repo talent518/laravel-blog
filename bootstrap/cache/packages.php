@@ -45,4 +45,11 @@
       0 => 'NunoMaduro\\Collision\\Adapters\\Laravel\\CollisionServiceProvider',
     ),
   ),
+  'vladimir-yuldashev/laravel-queue-rabbitmq' => 
+  array (
+    'providers' => 
+    array (
+      0 => 'VladimirYuldashev\\LaravelQueueRabbitMQ\\LaravelQueueRabbitMQServiceProvider',
+    ),
+  ),
 );
