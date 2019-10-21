@@ -22,5 +22,11 @@
         "sass-loader": "7.*",
         "vue": "^2.5.17",
         "vue-template-compiler": "^2.6.10"
+    },
+    "dependencies": {
+        "dotenv": "^8.2.0",
+        "ioredis": "^4.14.1",
+        "moment": "^2.24.0",
+        "socket.io": "^2.3.0"
     }
 }

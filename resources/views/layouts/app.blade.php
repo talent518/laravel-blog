@@ -18,8 +18,10 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    @yield('head')
 </head>
 <body>
+    @yield('begin-page')
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
@@ -49,6 +51,9 @@
                                 </li>
                             @endif
                         @else
+                        	<li class="nav-item">
+                                <a class="nav-link" href="{{ route('chat') }}">{{ __('Chat') }}</a>
+                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
@@ -76,5 +81,6 @@
             @yield('content')
         </main>
     </div>
+    @yield('end-page')
 </body>
 </html>
