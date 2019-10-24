@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Display an inspiring quote');
+
+Artisan::command('db:importable', function () {
+	$exportPath = app()->basePath('database/export');
+	$this->info(implode(PHP_EOL, array_filter(scandir($exportPath), function($name) {return $name !== '.' && $name !== '..' && $name !== '.gitignore';})));
+})->describe('Display all importable directory name(backup name).');
