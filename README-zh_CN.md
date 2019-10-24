@@ -458,10 +458,59 @@ redis.on('pmessage', function(subscrbed, channel, message) {
   10. 用户登录到系统后HOME中有Chat连接，即可正常使用。
 
 ## 4. 根据浏览器的语言设置自适应
-  * 1. 在文件 app/Providers/AppServiceProvider.php 中的boot方法中添加如下代码：
+  1. 在文件 app/Providers/AppServiceProvider.php 中的boot方法中添加如下代码：
 ```php
 if(preg_match('/^(zh|cn)/i', request()->header('Accept-Language'))) app()->setLocale('zh-CN');
 ```
   2. 翻译代码中的文字，如下列文件：
     * resources/lang/en/chat.php
     * resources/lang/zh-CN/chat.php
+
+## 5. 自定义artisan命令
+  1. 使用 **./artisan make:command DatabaseExport** 生成控制台类
+```php
+<?php
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+
+class DatabaseExport extends Command {
+
+	/**
+	 * The name and signature of the console command.
+	 * 
+	 * @var string
+	 */
+	protected $signature = 'db:export {name? : Exported directory name.} {--format=sql : table data format(sql,dat)}';
+
+	/**
+	 * The console command description.
+	 * 
+	 * @var string
+	 */
+	protected $description = 'Database export as sql file';
+
+	/**
+	 * Create a new command instance.
+	 * 
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct();
+	}
+
+	/**
+	 * Execute the console command.
+	 * 
+	 * @return mixed
+	 */
+	public function handle() {
+		$name = $this->argument('name'); // get name argument
+		$format = $this->option('format'); // get format option, default value is 'sql'.
+		// TODO: Write your code.
+	}
+}
+```
+  2. 执行 **./artisan db:export** 运行其中**name**和**--format**是可选参数，可使用 **./artisan help db:export** 查看命令帮助
+  3. 也可在 **routes/console.php** 中添加自定义 **artisan**命令，与步骤1中只要命令名db:export不冲突即可

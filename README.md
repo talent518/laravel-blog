@@ -464,3 +464,53 @@ if(preg_match('/^(zh|cn)/i', request()->header('Accept-Language'))) app()->setLo
   2. Translate the text in the code as follows:
     * resources/lang/en/chat.php
     * resources/lang/zh-CN/chat.php
+
+## 5. Custom artisan command
+  1. Use **./artisan make:command DatabaseExport** to generate console classes
+```php
+<?php
+namespace App\Console\Commands;
+
+use Illuminate\Console\Command;
+use Illuminate\Support\Facades\DB;
+
+class DatabaseExport extends Command {
+
+	/**
+	 * The name and signature of the console command.
+	 * 
+	 * @var string
+	 */
+	protected $signature = 'db:export {name? : Exported directory name.} {--format=sql : table data format(sql,dat)}';
+
+	/**
+	 * The console command description.
+	 * 
+	 * @var string
+	 */
+	protected $description = 'Database export as sql file';
+
+	/**
+	 * Create a new command instance.
+	 * 
+	 * @return void
+	 */
+	public function __construct() {
+		parent::__construct();
+	}
+
+	/**
+	 * Execute the console command.
+	 * 
+	 * @return mixed
+	 */
+	public function handle() {
+		$name = $this->argument('name'); // get name argument
+		$format = $this->option('format'); // get format option, default value is 'sql'.
+		// TODO: Write your code.
+	}
+}
+```
+  2. Execute **./artisan db:export** to run， where **name**和**--format**  are optional parameters，You can use **./artisan help db:export** to view command help
+  3. You can also add the custom **artisan** command in routes/console.php, which does not conflict with the command name **db:export** in step 1.
+
