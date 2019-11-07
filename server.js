@@ -22,8 +22,9 @@ app.listen(6001, function() {
 io.on('connection', function(socket) {
 	// socket.compress(false).send('Hello world!');
 	socket.on('disconnect', function() {
-		socket.leave(socket.room);
+		console.log(socket.name + ' leave room ' + socket.room);
 		io.to(socket.room).emit('leave', socket.name);
+		socket.leave(socket.room);
 	});
 	socket.on('join', function(join) {
 		console.log(join.name, 'join', join.room);
@@ -41,9 +42,6 @@ io.on('connection', function(socket) {
 		var t = moment().format('YYYY-MM-DD HH:mm:ss');
 		console.log('time:', socket.room, socket.name, t);
 		io.to(socket.room).emit('time', {name:socket.name, time:t});
-	});
-	socket.on('disconnect', function() {
-		console.log('user disconnect')
 	});
 });
 
