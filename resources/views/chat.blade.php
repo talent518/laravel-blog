@@ -65,7 +65,7 @@ document.body.onload = function() {
 			sock = this;
 		});
 		sock.on('disconnect', function() {
-			$('#j-message-box').prepend('<p>' + time() + ' <span class="text-info">{{ __("chat.disconnected") }}Disconnected</span></p>');
+			$('#j-message-box').prepend('<p>' + time() + ' <span class="text-info">{{ __("chat.disconnected") }}</span></p>');
 			$('#j-connect').attr('disabled', false);
 			$('#j-disconnect,#j-time,#j-submit').attr('disabled', true);
 			sock.close();
